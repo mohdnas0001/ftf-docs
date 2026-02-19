@@ -1,0 +1,112 @@
+import type { WeekData, Section, SubSection } from "@/data/syllabus";
+
+/* ------------------------------------------------------------------ */
+/*  Sub-section renderer                                               */
+/* ------------------------------------------------------------------ */
+function SubSectionCard({ sub }: { sub: SubSection }) {
+  return (
+    <div className="ml-4 border-l-2 border-indigo-200 pl-4 mt-3">
+      <h5 className="font-semibold text-gray-800">{sub.title}</h5>
+      <p className="text-gray-600 mt-1 leading-relaxed">{sub.content}</p>
+      {sub.bullets && (
+        <ul className="list-disc list-inside mt-2 space-y-1 text-gray-600">
+          {sub.bullets.map((b, i) => (
+            <li key={i}>{b}</li>
+          ))}
+        </ul>
+      )}
+    </div>
+  );
+}
+
+/* ------------------------------------------------------------------ */
+/*  Section renderer                                                   */
+/* ------------------------------------------------------------------ */
+function SectionBlock({ section }: { section: Section }) {
+  return (
+    <details className="group rounded-xl border border-gray-200 bg-gray-50 open:bg-white open:shadow-sm transition-all">
+      <summary className="cursor-pointer select-none px-5 py-4 text-lg font-semibold text-indigo-700 group-open:border-b group-open:border-gray-200">
+        {section.title}
+      </summary>
+
+      <div className="px-5 py-4 space-y-3">
+        {section.content && (
+          <p className="text-gray-700 leading-relaxed">{section.content}</p>
+        )}
+
+        {section.bullets && (
+          <ul className="list-disc list-inside space-y-1 text-gray-700">
+            {section.bullets.map((b, i) => (
+              <li key={i}>{b}</li>
+            ))}
+          </ul>
+        )}
+
+        {section.subsections?.map((sub, i) => (
+          <SubSectionCard key={i} sub={sub} />
+        ))}
+      </div>
+    </details>
+  );
+}
+
+/* ------------------------------------------------------------------ */
+/*  Main Slide component                                               */
+/* ------------------------------------------------------------------ */
+interface SlideProps {
+  data: WeekData;
+}
+
+export default function Slide({ data }: SlideProps) {
+  return (
+    <section className="max-w-4xl mx-auto my-10 rounded-2xl border border-gray-200 bg-white shadow-lg overflow-hidden">
+      {/* Header */}
+      <div className="bg-gradient-to-r from-indigo-600 to-purple-600 px-8 py-8">
+        <h2 className="text-3xl font-bold text-white">{data.title}</h2>
+        <p className="mt-3 text-indigo-100 leading-relaxed text-base">
+          {data.overview}
+        </p>
+      </div>
+
+      <div className="px-8 py-8 space-y-4">
+        {/* Sections (collapsible) */}
+        {data.sections.map((section, i) => (
+          <SectionBlock key={i} section={section} />
+        ))}
+
+        {/* Assessment */}
+        <div className="mt-6">
+          <h3 className="text-lg font-semibold text-gray-800 mb-3">
+            📝 Assessment
+          </h3>
+          <p className="text-gray-700 leading-relaxed bg-amber-50 border-l-4 border-amber-400 p-4 rounded-r-lg">
+            {data.assessment}
+          </p>
+        </div>
+
+        {/* Support Resources */}
+        {data.supportResources.length > 0 && (
+          <div>
+            <h3 className="text-lg font-semibold text-gray-800 mb-3">
+              🔗 Support Resources
+            </h3>
+            <ul className="space-y-2">
+              {data.supportResources.map((res, i) => (
+                <li key={i}>
+                  <a
+                    href={res.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-indigo-600 hover:text-indigo-800 underline"
+                  >
+                    {res.label}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
+      </div>
+    </section>
+  );
+}
