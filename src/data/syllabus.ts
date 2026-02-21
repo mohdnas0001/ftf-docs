@@ -287,6 +287,187 @@ export const syllabus: WeekData[] = [
         ],
       },
 
+      /* 13 --------------------------------------------------------- */
+      {
+        title: "How to Set Up Development Tools",
+        content:
+          "Before writing your first line of code you need a productive development environment. A good setup reduces friction, catches errors early, and lets you focus on building rather than fighting your tools. Below we walk through the essential tools every frontend developer should install and configure.",
+        subsections: [
+          {
+            title: "Visual Studio Code (VS Code)",
+            content:
+              "VS Code is a free, open-source code editor developed by Microsoft and is the most popular editor among frontend developers. It offers built-in Git integration, an integrated terminal, IntelliSense (smart code completion), and thousands of extensions. Download it from https://code.visualstudio.com for Windows, macOS or Linux.",
+            bullets: [
+              "Install recommended extensions: Prettier (code formatter), ESLint (linting), Live Server (local dev server with hot reload), and Auto Rename Tag.",
+              "Enable Format On Save (Settings → Editor: Format On Save) so your code is automatically formatted every time you save.",
+              "Use the integrated terminal (Ctrl + ` or Cmd + `) to run commands without leaving the editor.",
+              "Explore the Command Palette (Ctrl+Shift+P / Cmd+Shift+P) — it gives quick access to every VS Code feature.",
+              "Choose a comfortable colour theme (e.g. One Dark Pro, Dracula, GitHub Theme) via File → Preferences → Color Theme.",
+            ],
+          },
+          {
+            title: "Web Browsers & DevTools",
+            content:
+              "You will spend as much time in the browser as in your editor. Install at least two browsers for cross-browser testing. Google Chrome is the industry standard for development thanks to its powerful DevTools, but Firefox Developer Edition offers excellent CSS debugging tools.",
+            bullets: [
+              "Google Chrome — install from https://www.google.com/chrome. Open DevTools with F12 or Cmd+Option+I (Mac) / Ctrl+Shift+I (Windows/Linux).",
+              "Firefox Developer Edition — install from https://www.mozilla.org/firefox/developer. Its CSS Grid and Flexbox inspectors are best-in-class.",
+              "Learn the Elements panel (inspect & edit HTML/CSS live), Console panel (run JavaScript, view errors), Network panel (monitor requests), and Lighthouse (performance audits).",
+              "Install the React Developer Tools and Vue.js devtools browser extensions when you start using those frameworks.",
+            ],
+          },
+          {
+            title: "Node.js & npm",
+            content:
+              "Node.js is a JavaScript runtime that lets you execute JavaScript outside the browser. It ships with npm (Node Package Manager), which you will use to install libraries, run build scripts, and manage project dependencies. Download the LTS (Long Term Support) version from https://nodejs.org.",
+            bullets: [
+              "Verify installation by running 'node -v' and 'npm -v' in your terminal.",
+              "Consider using nvm (Node Version Manager) to install and switch between multiple Node.js versions easily.",
+              "npm init creates a package.json file — the manifest that tracks your project's dependencies and scripts.",
+            ],
+          },
+          {
+            title: "Git & GitHub",
+            content:
+              "Git is a distributed version control system that tracks changes in your code over time. GitHub is a cloud platform for hosting Git repositories, collaborating with others, and showcasing your work. Every professional developer uses version control — start early.",
+            bullets: [
+              "Install Git from https://git-scm.com. On macOS you can also install it via Xcode Command Line Tools (xcode-select --install).",
+              "Create a free GitHub account at https://github.com.",
+              "Configure your identity: 'git config --global user.name \"Your Name\"' and 'git config --global user.email \"you@example.com\"'.",
+              "Learn the basic workflow: git init → git add → git commit → git push.",
+              "VS Code has built-in Git support — use the Source Control panel to stage, commit and push without the terminal.",
+            ],
+          },
+          {
+            title: "Terminal / Command Line",
+            content:
+              "The terminal is a text-based interface for interacting with your computer. Frontend tooling — npm scripts, Git commands, build tools — runs in the terminal. Getting comfortable with it early will make everything else easier.",
+            bullets: [
+              "macOS: use the built-in Terminal app or install iTerm2 for a richer experience.",
+              "Windows: use Windows Terminal with PowerShell, or install Git Bash for a Unix-like experience.",
+              "Linux: most distributions include a terminal emulator by default.",
+              "Essential commands to learn: cd (change directory), ls/dir (list files), mkdir (create folder), touch (create file), rm (remove).",
+            ],
+          },
+          {
+            title: "Recommended VS Code Extensions for Frontend",
+            content:
+              "Extensions supercharge your editor. Here is a curated starter pack for frontend development.",
+            bullets: [
+              "Prettier — automatic code formatting for HTML, CSS, JS and more.",
+              "ESLint — highlights JavaScript/TypeScript errors and enforces coding standards.",
+              "Live Server — launches a local development server with live reload on file save.",
+              "Auto Rename Tag — automatically renames the paired HTML/XML tag when you edit one.",
+              "Path Intellisense — autocompletes file paths as you type imports.",
+              "GitLens — provides rich Git blame annotations and history directly in the editor.",
+            ],
+          },
+        ],
+      },
+
+      /* 14 --------------------------------------------------------- */
+      {
+        title: "Introduction to the Web: How Browsers Work",
+        content:
+          "Every time you type a URL and press Enter, a complex chain of events unfolds in milliseconds. Understanding this process is fundamental for frontend developers — it explains why certain optimisations matter, why your CSS sometimes 'flashes', and how JavaScript can block page rendering. Let's trace the journey from URL to pixels on screen.",
+        subsections: [
+          {
+            title: "What Is the World Wide Web?",
+            content:
+              "The World Wide Web (WWW) is a system of interlinked documents and resources accessed via the Internet. It was invented by Tim Berners-Lee in 1989 and relies on three core technologies: URLs (addresses), HTTP (the communication protocol), and HTML (the document format). The web is just one service that runs on the Internet — email, file transfer and streaming are others.",
+            bullets: [
+              "The Internet is the global network of connected computers; the Web is a service built on top of it.",
+              "Websites are collections of web pages hosted on web servers and accessed through browsers.",
+              "Every resource on the web has a unique URL (Uniform Resource Locator) that identifies its location.",
+            ],
+          },
+          {
+            title: "The Client–Server Model",
+            content:
+              "Web communication follows a client–server architecture. The client (your browser) sends requests and the server responds with the requested resources. This request–response cycle is the foundation of how the web works.",
+            bullets: [
+              "Client — the browser (Chrome, Firefox, Safari) that requests and displays web pages.",
+              "Server — a computer running software (e.g. Apache, Nginx, Node.js) that stores website files and serves them on request.",
+              "The client and server communicate using HTTP (HyperText Transfer Protocol) or its secure variant HTTPS.",
+            ],
+          },
+          {
+            title: "DNS Lookup — Finding the Server",
+            content:
+              "When you enter a URL like www.example.com, the browser needs to find the IP address of the server hosting that website. This is handled by the Domain Name System (DNS), often called the 'phone book of the Internet'. The browser checks its local cache first, then queries DNS servers until it resolves the domain to an IP address (e.g. 93.184.216.34).",
+            bullets: [
+              "DNS translates human-readable domain names into numerical IP addresses.",
+              "Lookups are cached at multiple levels (browser, OS, router, ISP) to speed up repeat visits.",
+              "A slow DNS lookup can delay the entire page load — this is why CDNs and DNS prefetching matter.",
+            ],
+          },
+          {
+            title: "HTTP Request & Response",
+            content:
+              "Once the IP address is found, the browser establishes a TCP connection (and a TLS handshake for HTTPS) and sends an HTTP request to the server. The request includes the method (GET, POST, etc.), the path, headers (e.g. accepted content types, cookies) and sometimes a body. The server processes the request and sends back an HTTP response containing a status code (200 OK, 404 Not Found, etc.), headers and the response body (usually the HTML document).",
+            bullets: [
+              "Common HTTP methods: GET (retrieve data), POST (send data), PUT (update), DELETE (remove).",
+              "Status codes: 2xx = success, 3xx = redirect, 4xx = client error, 5xx = server error.",
+              "Response headers tell the browser how to handle the content — caching rules, content type, encoding, etc.",
+            ],
+          },
+          {
+            title: "Parsing HTML — Building the DOM",
+            content:
+              "The browser receives the HTML document and begins parsing it from top to bottom. It converts the HTML markup into a tree-like data structure called the DOM (Document Object Model). Each HTML element becomes a node in the tree. As the parser encounters links to external resources — CSS files, JavaScript files, images — it issues additional HTTP requests to fetch them.",
+            bullets: [
+              "The DOM is a live, in-memory representation of the HTML document that JavaScript can read and modify.",
+              "Parsing is incremental — the browser starts rendering as soon as it has enough of the DOM, not after the entire document is downloaded.",
+              "Script tags without 'async' or 'defer' block HTML parsing until the script is downloaded and executed.",
+            ],
+          },
+          {
+            title: "Building the CSSOM",
+            content:
+              "While the HTML parser builds the DOM, CSS files are parsed into the CSSOM (CSS Object Model). The CSSOM is another tree structure that represents all the styles and their specificity. The browser cannot render a page until the CSSOM is complete because it needs to know the final computed style for every visible element.",
+            bullets: [
+              "CSS is render-blocking — the browser waits for all CSS to be parsed before painting pixels.",
+              "This is why you should keep CSS lean, avoid unused styles, and place <link> tags in the <head>.",
+              "The CSSOM + DOM together determine every element's size, position, colour and visibility.",
+            ],
+          },
+          {
+            title: "The Render Tree, Layout & Paint",
+            content:
+              "The browser combines the DOM and CSSOM into a Render Tree, which contains only the visible elements (it excludes <head>, elements with display:none, etc.). It then calculates the exact position and size of each element in a step called Layout (also known as Reflow). Finally, the Paint step fills in pixels — colours, text, images, borders, shadows — onto layers, and the Compositing step merges those layers into the final image displayed on screen.",
+            bullets: [
+              "Render Tree = DOM + CSSOM minus invisible nodes.",
+              "Layout calculates geometry (position, width, height) for every render-tree node.",
+              "Paint converts layout information into actual pixels; Compositing merges the painted layers.",
+              "Changes to layout properties (width, top, font-size) trigger a reflow, which is expensive — minimise them for better performance.",
+            ],
+          },
+          {
+            title: "JavaScript Execution & the Event Loop",
+            content:
+              "JavaScript runs in a single-threaded environment inside the browser. The engine (e.g. V8 in Chrome) executes scripts, handles user events, and updates the DOM. The Event Loop is the mechanism that keeps the browser responsive: it processes a queue of tasks (click handlers, timer callbacks, network responses) one at a time while allowing the browser to repaint between tasks.",
+            bullets: [
+              "JavaScript can modify both the DOM and CSSOM, which may trigger re-layout and re-paint.",
+              "Long-running scripts block the main thread and make the page unresponsive — keep tasks short.",
+              "Use 'async' and 'defer' attributes on script tags to avoid blocking HTML parsing.",
+              "Web APIs (setTimeout, fetch, addEventListener) hand off work and push callbacks onto the task queue for the event loop to process.",
+            ],
+          },
+          {
+            title: "Putting It All Together — The Critical Rendering Path",
+            content:
+              "The Critical Rendering Path (CRP) is the sequence of steps the browser takes to convert HTML, CSS and JavaScript into pixels on screen: DNS lookup → HTTP request → receive HTML → parse HTML (build DOM) → fetch & parse CSS (build CSSOM) → execute JavaScript → build Render Tree → Layout → Paint → Composite. Optimising the CRP is one of the most impactful things a frontend developer can do to improve page performance.",
+            bullets: [
+              "Minimise render-blocking resources — inline critical CSS, defer non-critical JS.",
+              "Reduce the number of critical resources (CSS and synchronous JS files that block first render).",
+              "Compress and minify HTML, CSS and JS to reduce download sizes.",
+              "Use browser caching headers so returning visitors skip redundant downloads.",
+              "Audit your CRP with Chrome DevTools → Performance panel and Lighthouse.",
+            ],
+          },
+        ],
+      },
+
     
     ],
 
