@@ -11,11 +11,11 @@ export type {
 } from "./types";
 
 // Import week data
-import { week1, week3, week4 } from "./weeks";
+import { week1, week3, week4, week5_6 } from "./weeks";
 import type { WeekData } from "./types";
 
 /* ------------------------------------------------------------------ */
 /*  Course data                                                        */
 /* ------------------------------------------------------------------ */
 
-export const syllabus: WeekData[] = [week1, week3, week4];
+export const syllabus: WeekData[] = [week1, week3, week4, week5_6];
